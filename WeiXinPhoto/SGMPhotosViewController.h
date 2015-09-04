@@ -1,0 +1,17 @@
+//
+//  SGMPhotosViewController.h
+//  WeiXinPhoto
+//
+//  Created by 苏贵明 on 15/9/4.
+//  Copyright (c) 2015年 苏贵明. All rights reserved.
+//
+
+#import <UIKit/UIKit.h>
+#import <AssetsLibrary/AssetsLibrary.h>
+
+
+@interface SGMPhotosViewController : UIViewController
+
+@property(nonatomic,retain)ALAssetsGroup *group;
+
+@end
