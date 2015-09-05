@@ -10,7 +10,6 @@
 		7656968E1B995244005E2080 /* SGMAlbumViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7656968D1B995244005E2080 /* SGMAlbumViewController.m */; };
 		765696911B996B86005E2080 /* SGMPhotosViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 765696901B996B86005E2080 /* SGMPhotosViewController.m */; };
 		765696951B999038005E2080 /* notSelected.png in Resources */ = {isa = PBXBuildFile; fileRef = 765696921B999038005E2080 /* notSelected.png */; };
-		765696961B999038005E2080 /* backImg.png in Resources */ = {isa = PBXBuildFile; fileRef = 765696931B999038005E2080 /* backImg.png */; };
 		765696971B999038005E2080 /* selected.png in Resources */ = {isa = PBXBuildFile; fileRef = 765696941B999038005E2080 /* selected.png */; };
 		768914201B9A7C960016610A /* FGalleryPhoto.m in Sources */ = {isa = PBXBuildFile; fileRef = 7689141B1B9A7C960016610A /* FGalleryPhoto.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		768914211B9A7C960016610A /* FGalleryPhotoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7689141D1B9A7C960016610A /* FGalleryPhotoView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -20,6 +19,7 @@
 		76B977CB1B9846DF009FA150 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 76B977CA1B9846DF009FA150 /* ViewController.m */; };
 		76B977D01B9846DF009FA150 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 76B977CF1B9846DF009FA150 /* Images.xcassets */; };
 		76B977DF1B9846E0009FA150 /* WeiXinPhotoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 76B977DE1B9846E0009FA150 /* WeiXinPhotoTests.m */; };
+		76E991BE1B9AF83600C1F64E /* sample.png in Resources */ = {isa = PBXBuildFile; fileRef = 76E991BD1B9AF83600C1F64E /* sample.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,7 +38,6 @@
 		7656968F1B996B86005E2080 /* SGMPhotosViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGMPhotosViewController.h; sourceTree = "<group>"; };
 		765696901B996B86005E2080 /* SGMPhotosViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SGMPhotosViewController.m; sourceTree = "<group>"; };
 		765696921B999038005E2080 /* notSelected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = notSelected.png; sourceTree = "<group>"; };
-		765696931B999038005E2080 /* backImg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = backImg.png; sourceTree = "<group>"; };
 		765696941B999038005E2080 /* selected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = selected.png; sourceTree = "<group>"; };
 		7689141A1B9A7C960016610A /* FGalleryPhoto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FGalleryPhoto.h; sourceTree = "<group>"; };
 		7689141B1B9A7C960016610A /* FGalleryPhoto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FGalleryPhoto.m; sourceTree = "<group>"; };
@@ -57,6 +56,7 @@
 		76B977D81B9846E0009FA150 /* WeiXinPhotoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WeiXinPhotoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		76B977DD1B9846E0009FA150 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		76B977DE1B9846E0009FA150 /* WeiXinPhotoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WeiXinPhotoTests.m; sourceTree = "<group>"; };
+		76E991BD1B9AF83600C1F64E /* sample.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sample.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,6 +90,20 @@
 			name = FGallery;
 			sourceTree = "<group>";
 		};
+		768914271B9AF28E0016610A /* WeiXinPhoto */ = {
+			isa = PBXGroup;
+			children = (
+				768914191B9A7C790016610A /* FGallery */,
+				7656968C1B995244005E2080 /* SGMAlbumViewController.h */,
+				7656968D1B995244005E2080 /* SGMAlbumViewController.m */,
+				7656968F1B996B86005E2080 /* SGMPhotosViewController.h */,
+				765696901B996B86005E2080 /* SGMPhotosViewController.m */,
+				765696921B999038005E2080 /* notSelected.png */,
+				765696941B999038005E2080 /* selected.png */,
+			);
+			name = WeiXinPhoto;
+			sourceTree = "<group>";
+		};
 		76B977B61B9846DF009FA150 = {
 			isa = PBXGroup;
 			children = (
@@ -111,20 +125,14 @@
 		76B977C11B9846DF009FA150 /* WeiXinPhoto */ = {
 			isa = PBXGroup;
 			children = (
-				768914191B9A7C790016610A /* FGallery */,
+				768914271B9AF28E0016610A /* WeiXinPhoto */,
 				76B977C61B9846DF009FA150 /* AppDelegate.h */,
 				76B977C71B9846DF009FA150 /* AppDelegate.m */,
 				76B977C91B9846DF009FA150 /* ViewController.h */,
 				76B977CA1B9846DF009FA150 /* ViewController.m */,
+				76E991BD1B9AF83600C1F64E /* sample.png */,
 				76B977CF1B9846DF009FA150 /* Images.xcassets */,
 				76B977C21B9846DF009FA150 /* Supporting Files */,
-				7656968C1B995244005E2080 /* SGMAlbumViewController.h */,
-				7656968D1B995244005E2080 /* SGMAlbumViewController.m */,
-				7656968F1B996B86005E2080 /* SGMPhotosViewController.h */,
-				765696901B996B86005E2080 /* SGMPhotosViewController.m */,
-				765696921B999038005E2080 /* notSelected.png */,
-				765696931B999038005E2080 /* backImg.png */,
-				765696941B999038005E2080 /* selected.png */,
 			);
 			path = WeiXinPhoto;
 			sourceTree = "<group>";
@@ -238,7 +246,7 @@
 				765696971B999038005E2080 /* selected.png in Resources */,
 				765696951B999038005E2080 /* notSelected.png in Resources */,
 				76B977D01B9846DF009FA150 /* Images.xcassets in Resources */,
-				765696961B999038005E2080 /* backImg.png in Resources */,
+				76E991BE1B9AF83600C1F64E /* sample.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
