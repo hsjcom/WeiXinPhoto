@@ -8,10 +8,16 @@
 
 #import <UIKit/UIKit.h>
 #import <AssetsLibrary/AssetsLibrary.h>
+#import "FGalleryViewController.h"
 
+typedef enum {
+    AssetArrayType,
+    SelectedArrayType
+}ArrayType;
 
 @interface SGMPhotosViewController : UIViewController
 
 @property(nonatomic,retain)ALAssetsGroup *group;
+@property(nonatomic,weak)SelectedBlock block;
 
 @end

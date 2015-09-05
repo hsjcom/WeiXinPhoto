@@ -17,6 +17,8 @@
 
     UITableView* mainTable;
     NSMutableArray* selectedPhotoArray;
+    
+    ALAssetsLibrary* assetLibrary;//照片的生命周期跟它有关，所以弄成全局变量在这里初始化
 
 }
 
@@ -27,18 +29,25 @@
     
     selectedPhotoArray = [[NSMutableArray alloc]init];
     
+    //全局变量
+    assetLibrary = [[ALAssetsLibrary alloc]init];
+    
     mainTable = [[UITableView alloc]initWithFrame:self.view.bounds style:UITableViewStylePlain];
     mainTable.dataSource = self;
     mainTable.delegate = self;
     mainTable.tableFooterView = [[UIView alloc] init];
     [self.view addSubview:mainTable];
     
-  
-    
 }
 
 -(void)btTap{
     SGMAlbumViewController* viewVC = [[SGMAlbumViewController alloc] init];
+    viewVC.assetsLibrary =assetLibrary;
+    [viewVC doSelectedBlock:^(NSMutableArray *assetDicArray) { //包含 {@"asset":ALAsset,@"assetIndex":0,@"select":@YES}
+        [selectedPhotoArray addObjectsFromArray:assetDicArray];
+        [mainTable reloadData];
+    }];
+    
     UINavigationController* nav = [[UINavigationController alloc]initWithRootViewController:viewVC];
     [self presentViewController:nav animated:YES completion:nil];
 
@@ -55,13 +64,13 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
 
-    return 50;
+    return 80;
 
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
 
-    return 10;
+    return selectedPhotoArray.count;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -77,9 +86,9 @@
     if (cell == nil) {
         cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identify];
     }
-    
-    
-    cell.textLabel.text = @"ff";
+
+    ALAsset *asset = [[selectedPhotoArray objectAtIndex:indexPath.row] objectForKey:@"asset"];
+    cell.imageView.image = [UIImage imageWithCGImage:[[asset defaultRepresentation] fullScreenImage]];
     
     return cell;
 }

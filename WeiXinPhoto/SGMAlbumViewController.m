@@ -7,7 +7,6 @@
 //
 
 #import "SGMAlbumViewController.h"
-#import "SGMPhotosViewController.h"
 
 
 @interface SGMAlbumViewController ()<UITableViewDataSource,UITableViewDelegate>
@@ -17,10 +16,15 @@
 @implementation SGMAlbumViewController{
 
     UITableView* mainTable;
-    
-    ALAssetsLibrary *assetsLibrary;//照片的生命周期和它一样，所以不能让它死咯！
     NSMutableArray* groupArray;
+    
+    SelectedBlock block;
 
+}
+@synthesize assetsLibrary;
+
+-(void)doSelectedBlock:(SelectedBlock)bl{
+    block = bl;
 }
 
 - (void)viewDidLoad {
@@ -30,7 +34,6 @@
     self.title = @"照片";
     self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
     self.navigationController.navigationBar.barStyle = UIBarStyleBlack;
-
     
     UIBarButtonItem *rightButton = [[UIBarButtonItem alloc] initWithTitle:@"取消"
                                                                     style:UIBarButtonItemStyleDone
@@ -46,7 +49,6 @@
     
     
     groupArray = [[NSMutableArray alloc]init];
-    assetsLibrary = [[ALAssetsLibrary alloc]init];
     
     mainTable = [[UITableView alloc]initWithFrame:self.view.bounds style:UITableViewStylePlain];
     mainTable.dataSource = self;
@@ -67,10 +69,6 @@
         }else{
             [mainTable reloadData];
         }
-        [group enumerateAssetsUsingBlock:^(ALAsset *result, NSUInteger index, BOOL *stop) {
-            //每个相册里的照片,在下个view处理显示
-    
-        }];
     } failureBlock:^(NSError *error) {
         NSLog(@"相册获取失败");
     }];
@@ -113,6 +111,7 @@
     
     SGMPhotosViewController* viewVC = [[SGMPhotosViewController alloc]init];
     viewVC.group =[groupArray objectAtIndex:indexPath.row];
+    viewVC.block = block;
     [self.navigationController pushViewController:viewVC animated:YES];
 
 }

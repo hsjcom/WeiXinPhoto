@@ -7,7 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "SGMPhotosViewController.h"
+
 
 @interface SGMAlbumViewController : UIViewController
 
+@property(nonatomic,retain)ALAssetsLibrary *assetsLibrary;
+-(void)doSelectedBlock:(SelectedBlock)bl;
 @end

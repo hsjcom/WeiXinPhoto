@@ -12,6 +12,9 @@
 		765696951B999038005E2080 /* notSelected.png in Resources */ = {isa = PBXBuildFile; fileRef = 765696921B999038005E2080 /* notSelected.png */; };
 		765696961B999038005E2080 /* backImg.png in Resources */ = {isa = PBXBuildFile; fileRef = 765696931B999038005E2080 /* backImg.png */; };
 		765696971B999038005E2080 /* selected.png in Resources */ = {isa = PBXBuildFile; fileRef = 765696941B999038005E2080 /* selected.png */; };
+		768914201B9A7C960016610A /* FGalleryPhoto.m in Sources */ = {isa = PBXBuildFile; fileRef = 7689141B1B9A7C960016610A /* FGalleryPhoto.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		768914211B9A7C960016610A /* FGalleryPhotoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7689141D1B9A7C960016610A /* FGalleryPhotoView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		768914221B9A7C960016610A /* FGalleryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7689141F1B9A7C960016610A /* FGalleryViewController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		76B977C51B9846DF009FA150 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 76B977C41B9846DF009FA150 /* main.m */; };
 		76B977C81B9846DF009FA150 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 76B977C71B9846DF009FA150 /* AppDelegate.m */; };
 		76B977CB1B9846DF009FA150 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 76B977CA1B9846DF009FA150 /* ViewController.m */; };
@@ -37,6 +40,12 @@
 		765696921B999038005E2080 /* notSelected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = notSelected.png; sourceTree = "<group>"; };
 		765696931B999038005E2080 /* backImg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = backImg.png; sourceTree = "<group>"; };
 		765696941B999038005E2080 /* selected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = selected.png; sourceTree = "<group>"; };
+		7689141A1B9A7C960016610A /* FGalleryPhoto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FGalleryPhoto.h; sourceTree = "<group>"; };
+		7689141B1B9A7C960016610A /* FGalleryPhoto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FGalleryPhoto.m; sourceTree = "<group>"; };
+		7689141C1B9A7C960016610A /* FGalleryPhotoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FGalleryPhotoView.h; sourceTree = "<group>"; };
+		7689141D1B9A7C960016610A /* FGalleryPhotoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FGalleryPhotoView.m; sourceTree = "<group>"; };
+		7689141E1B9A7C960016610A /* FGalleryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FGalleryViewController.h; sourceTree = "<group>"; };
+		7689141F1B9A7C960016610A /* FGalleryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FGalleryViewController.m; sourceTree = "<group>"; };
 		76B977BF1B9846DF009FA150 /* WeiXinPhoto.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeiXinPhoto.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		76B977C31B9846DF009FA150 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		76B977C41B9846DF009FA150 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -68,6 +77,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		768914191B9A7C790016610A /* FGallery */ = {
+			isa = PBXGroup;
+			children = (
+				7689141A1B9A7C960016610A /* FGalleryPhoto.h */,
+				7689141B1B9A7C960016610A /* FGalleryPhoto.m */,
+				7689141C1B9A7C960016610A /* FGalleryPhotoView.h */,
+				7689141D1B9A7C960016610A /* FGalleryPhotoView.m */,
+				7689141E1B9A7C960016610A /* FGalleryViewController.h */,
+				7689141F1B9A7C960016610A /* FGalleryViewController.m */,
+			);
+			name = FGallery;
+			sourceTree = "<group>";
+		};
 		76B977B61B9846DF009FA150 = {
 			isa = PBXGroup;
 			children = (
@@ -89,6 +111,7 @@
 		76B977C11B9846DF009FA150 /* WeiXinPhoto */ = {
 			isa = PBXGroup;
 			children = (
+				768914191B9A7C790016610A /* FGallery */,
 				76B977C61B9846DF009FA150 /* AppDelegate.h */,
 				76B977C71B9846DF009FA150 /* AppDelegate.m */,
 				76B977C91B9846DF009FA150 /* ViewController.h */,
@@ -233,10 +256,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				768914221B9A7C960016610A /* FGalleryViewController.m in Sources */,
+				768914211B9A7C960016610A /* FGalleryPhotoView.m in Sources */,
 				76B977CB1B9846DF009FA150 /* ViewController.m in Sources */,
 				76B977C81B9846DF009FA150 /* AppDelegate.m in Sources */,
 				7656968E1B995244005E2080 /* SGMAlbumViewController.m in Sources */,
 				765696911B996B86005E2080 /* SGMPhotosViewController.m in Sources */,
+				768914201B9A7C960016610A /* FGalleryPhoto.m in Sources */,
 				76B977C51B9846DF009FA150 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
