@@ -1,5 +1,5 @@
 # WeiXinPhoto
-模仿微信朋友圈选择照片模块，查看图片用[FGallery](https://github.com/gdavis/FGallery-iPhone)库改的。
+模仿微信朋友圈选择照片模块，查看图片用[FGallery](https://github.com/gdavis/FGallery-iPhone)库改的，适配了手机和pad。
 
 ![图片](https://github.com/AndyFightting/WeiXinPhoto/blob/master/WeiXinPhoto/sample.png)
 使用：
