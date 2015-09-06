@@ -6,6 +6,7 @@
 ```
 SGMAlbumViewController* viewVC = [[SGMAlbumViewController alloc] init];
     viewVC.assetsLibrary =assetLibrary;
+    viewVC.limitNum = 3;//限制选择张数，不设置即不限制
     [viewVC doSelectedBlock:^(NSMutableArray *assetDicArray) { //包含 {@"asset":ALAsset,@"assetIndex":0,@"select":@YES}
         [selectedPhotoArray addObjectsFromArray:assetDicArray];
         [mainTable reloadData];
