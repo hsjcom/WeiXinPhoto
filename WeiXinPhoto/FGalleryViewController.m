@@ -73,7 +73,7 @@
     NSMutableDictionary* currentDic;
 
 }
-@synthesize assetArray,selectedArray,isPreview,block;
+@synthesize assetArray,selectedArray,isPreview,block,limitNum;
 
 @synthesize galleryID;
 @synthesize photoSource = _photoSource;
@@ -350,18 +350,18 @@
     [finishBt setTitleColor:[UIColor colorWithWhite:0.5 alpha:0.3] forState:UIControlStateNormal];
     [_toolbar addSubview:finishBt];
     
-    numLabel = [[UILabel alloc]initWithFrame:CGRectMake(VIEW_WIDTH-70, 11, 18, 18)];
+    numLabel = [[UILabel alloc]initWithFrame:CGRectMake(VIEW_WIDTH-70, 10, 20, 20)];
     numLabel.textAlignment = NSTextAlignmentCenter;
     numLabel.textColor = [UIColor whiteColor];
     numLabel.font = [UIFont systemFontOfSize:12];
     numLabel.backgroundColor = [UIColor colorWithRed:143/255.0 green:195/255.0 blue:31/255.0 alpha:1];
-    numLabel.layer.cornerRadius = 9;
+    numLabel.layer.cornerRadius = 10;
     numLabel.layer.masksToBounds = YES;
     [_toolbar addSubview:numLabel];
     numLabel.hidden = YES;
     
     
-    checkBt = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 18, 18)];
+    checkBt = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 20, 20)];
     [checkBt setBackgroundImage:[UIImage imageNamed:@"notSelected"] forState:UIControlStateNormal];
     [checkBt setBackgroundImage:[UIImage imageNamed:@"selected"] forState:UIControlStateSelected];
     [checkBt setBackgroundImage:[UIImage imageNamed:@"selected"] forState:UIControlStateHighlighted];
@@ -402,6 +402,22 @@
         }
         
     }else{
+        if (limitNum>0) {
+            int num = 0;
+            NSArray* tmpAry = [NSArray arrayWithArray:selectedArray];
+            for (NSDictionary* dic in tmpAry) {
+                BOOL isSelected = [[dic objectForKey:@"select"] boolValue];
+                if (isSelected) {
+                    num++;
+                }
+            }
+            if (num>=limitNum) {
+                UIAlertView* alertView = [[UIAlertView alloc]initWithTitle:nil message:[NSString stringWithFormat:@"最多只能选择%d张照片",limitNum] delegate:nil cancelButtonTitle:@"我知道了" otherButtonTitles:nil, nil];
+                [alertView show];
+                return;
+            }
+        }
+        
         bt.selected = YES;
         //选中图片
         if (isPreview) {
@@ -436,7 +452,6 @@
 
 -(void)refreshFooterView{
     int num = 0;
-  
     NSArray* tmpAry = [NSArray arrayWithArray:selectedArray];
     for (NSDictionary* dic in tmpAry) {
             BOOL isSelected = [[dic objectForKey:@"select"] boolValue];

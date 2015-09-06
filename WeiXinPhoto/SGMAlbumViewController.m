@@ -21,7 +21,7 @@
     SelectedBlock block;
 
 }
-@synthesize assetsLibrary;
+@synthesize assetsLibrary,limitNum;
 
 -(void)doSelectedBlock:(SelectedBlock)bl{
     block = bl;
@@ -61,7 +61,7 @@
 }
 
 -(void)readPhotoGroup{
-    
+
     [assetsLibrary enumerateGroupsWithTypes:ALAssetsGroupAll usingBlock:^(ALAssetsGroup *group, BOOL *stop) {
        //相册
         if (group != nil) {
@@ -97,10 +97,15 @@
         cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:identify];
     }
     
-    ALAssetsGroup *group = [groupArray objectAtIndex:indexPath.row];
+    ALAssetsGroup *group = [groupArray objectAtIndex:(groupArray.count-1)-indexPath.row];
+    [group setAssetsFilter:[ALAssetsFilter allPhotos]];//过滤视频
     
+    NSString* name =[group valueForProperty:ALAssetsGroupPropertyName];
+    if ([name  isEqual: @"Camera Roll"]) {
+        name = @"相机胶卷";
+    }
     cell.imageView.image = [UIImage imageWithCGImage:group.posterImage];
-    cell.textLabel.text = [group valueForProperty:ALAssetsGroupPropertyName];
+    cell.textLabel.text = name;
     cell.detailTextLabel.text = [NSString stringWithFormat:@"%d",(int)[group numberOfAssets]];
     
     return cell;
@@ -110,8 +115,9 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
     SGMPhotosViewController* viewVC = [[SGMPhotosViewController alloc]init];
-    viewVC.group =[groupArray objectAtIndex:indexPath.row];
+    viewVC.group =[groupArray objectAtIndex:(groupArray.count-1)-indexPath.row];
     viewVC.block = block;
+    viewVC.limitNum = limitNum;
     [self.navigationController pushViewController:viewVC animated:YES];
 
 }

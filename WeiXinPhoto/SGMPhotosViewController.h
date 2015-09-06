@@ -19,5 +19,6 @@ typedef enum {
 
 @property(nonatomic,retain)ALAssetsGroup *group;
 @property(nonatomic,weak)SelectedBlock block;
+@property int limitNum;
 
 @end

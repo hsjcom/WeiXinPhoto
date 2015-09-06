@@ -79,6 +79,7 @@ typedef void  (^SelectedBlock) (NSMutableArray* assetDicArray);
 @property (nonatomic) BOOL hideTitle;
 
 //sgm
+@property int limitNum;
 @property(nonatomic,assign)SelectedBlock block;
 @property (nonatomic) BOOL isAssetDic;
 @property (nonatomic) BOOL isPreview;//是预览

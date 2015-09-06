@@ -13,5 +13,6 @@
 @interface SGMAlbumViewController : UIViewController
 
 @property(nonatomic,retain)ALAssetsLibrary *assetsLibrary;
+@property int limitNum;//限制选择张数，不设置(<1)即不限制
 -(void)doSelectedBlock:(SelectedBlock)bl;
 @end

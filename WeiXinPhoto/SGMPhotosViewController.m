@@ -37,7 +37,7 @@
     ArrayType arrayType;//0 assetArray, 1 selectedArray;
 
 }
-@synthesize group,block;
+@synthesize group,block,limitNum;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -60,7 +60,11 @@
                                     target:self
                                     action:nil];
     
-    self.title =[group valueForProperty:ALAssetsGroupPropertyName];
+    NSString* name =[group valueForProperty:ALAssetsGroupPropertyName];
+    if ([name  isEqual: @"Camera Roll"]) {
+        name = @"相机胶卷";
+    }
+    self.title =name;
     
     assetArray = [[NSMutableArray alloc]init];
     selectedArray = [[NSMutableArray alloc]init];
@@ -79,7 +83,6 @@
     
     //---获取group中的asset
     [group setAssetsFilter:[ALAssetsFilter allPhotos]];
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         [group enumerateAssetsUsingBlock:^(ALAsset *result, NSUInteger index, BOOL *stop) {
             if (result != nil) {
                 NSMutableDictionary* tmpDic = [[NSMutableDictionary alloc]init];
@@ -92,7 +95,6 @@
                 [mainTable reloadData];
             }
         }];
-    });
 }
 -(void)calculateNum{
     
@@ -130,12 +132,12 @@
     [finishBt setTitleColor:[UIColor colorWithWhite:0.5 alpha:0.3] forState:UIControlStateNormal];
     [backView addSubview:finishBt];
     
-    numLabel = [[UILabel alloc]initWithFrame:CGRectMake(VIEW_WIDTH-70, 14, 18, 18)];
+    numLabel = [[UILabel alloc]initWithFrame:CGRectMake(VIEW_WIDTH-70, 13, 20, 20)];
     numLabel.textAlignment = NSTextAlignmentCenter;
     numLabel.textColor = [UIColor whiteColor];
     numLabel.font = [UIFont systemFontOfSize:12];
     numLabel.backgroundColor = [UIColor colorWithRed:143/255.0 green:195/255.0 blue:31/255.0 alpha:1];
-    numLabel.layer.cornerRadius = 9;
+    numLabel.layer.cornerRadius = 10;
     numLabel.layer.masksToBounds = YES;
     [backView addSubview:numLabel];
     numLabel.hidden = YES;
@@ -148,6 +150,7 @@
         localGallery.isAssetDic = YES;
         localGallery.isPreview = YES;
         localGallery.block = block;
+        localGallery.limitNum = limitNum;
         localGallery.assetArray = assetArray;
         localGallery.selectedArray = selectedArray;
         [self.navigationController pushViewController:localGallery animated:YES];
@@ -175,7 +178,7 @@
     }
 }
 
--(void)viewWillAppear:(BOOL)animated{
+-(void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
     [self refreshFooterView];
     [mainTable reloadData];
@@ -223,7 +226,7 @@
             imgView.userInteractionEnabled = YES;
             [cell.contentView addSubview:imgView];
             
-            UIButton* checkBt = [[UIButton alloc]initWithFrame:CGRectMake(imgWidth-17-2, 2, 17, 17)];
+            UIButton* checkBt = [[UIButton alloc]initWithFrame:CGRectMake(imgWidth-20-2, 2, 20, 20)];
             [checkBt setBackgroundImage:[UIImage imageNamed:@"notSelected"] forState:UIControlStateNormal];
             [checkBt setBackgroundImage:[UIImage imageNamed:@"selected"] forState:UIControlStateSelected];
             [checkBt setBackgroundImage:[UIImage imageNamed:@"selected"] forState:UIControlStateHighlighted];
@@ -253,6 +256,7 @@
     localGallery.isAssetDic = YES;
     localGallery.isPreview = NO;
     localGallery.block = block;
+    localGallery.limitNum = limitNum;
     localGallery.assetArray = assetArray;
     localGallery.selectedArray = selectedArray;
     localGallery.startingIndex = imgV.tag;
@@ -274,6 +278,14 @@
         }
         
     }else{
+        if (limitNum>0) {
+            if (selectedArray.count>=limitNum) {
+                UIAlertView* alertView = [[UIAlertView alloc]initWithTitle:nil message:[NSString stringWithFormat:@"最多只能选择%d张照片",limitNum] delegate:nil cancelButtonTitle:@"我知道了" otherButtonTitles:nil, nil];
+                [alertView show];
+                return;
+            }
+        }
+        
         bt.selected = YES;
         //选中图片
         NSMutableDictionary* tmpDic = [assetArray objectAtIndex:(int)bt.tag];
